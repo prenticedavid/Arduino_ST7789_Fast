@@ -321,8 +321,8 @@ void Arduino_ST7789::commonST7789Init(const uint8_t *cmdList)
 
   // on AVR ST7789 works correctly in MODE2 and MODE3 but for STM32 only MODE3 seems to be working
   SPI.begin();
-#ifdef COMPATIBILITY_MODE
-  spiSettings = SPISettings(16000000, MSBFIRST, SPI_MODE3);  // 8000000 gives max speed on AVR 16MHz
+#ifdef COMPATIBILITY_MODE //.kbv
+  spiSettings = SPISettings(SPI_DEFAULT_FREQ, MSBFIRST, SPI_MODE3);  // 8000000 gives max speed on AVR 16MHz
 #else
   SPI.setClockDivider(SPI_CLOCK_DIV2);
   SPI.setDataMode(SPI_MODE3);
